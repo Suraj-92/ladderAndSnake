@@ -1,37 +1,54 @@
-import java.util.*;
-
-class LadderAndSnake{
-
-    public static void main(String[] args){
-
+public class LadderAndSnake{
+      private void play(){
       int position=0;
-      System.out.println("Start with position "+position);
-      Random r=new Random();
-      int x=r.nextInt(7);
-      System.out.println("Rolling the dice " +x);
 
-      Random r1=new Random();
-      int y=r1.nextInt(3);
-      System.out.println("Steps" +y);
+      while(position!=100)
+      {
 
-      if(y==0)
+      int dice=(int) (Math.floor(Math.random()*10 % 6 + 1));
+      System.out.println("Rolling the dice" +dice);
+
+
+      int diceCheck=(int)(Math.random()* dice % 3);
+      System.out.println("Dice Check is :"+diceCheck);
+
+      if(diceCheck == 0)
       {
          System.out.println("Player is in same position....");
       }
-      else if(y==1)
+      else if(diceCheck == 1)
       {
-         System.out.println("Player move behind");
-         position=position-x;
+         System.out.println("Player move ahead");
+         position=position+dice;
          System.out.println("Current position of player is:"+position);
       }
-      else if(y==2)
+      else if(diceCheck==2)
       {
-         System.out.println("Player Move ahead");
-         position=position-x;
+         System.out.println("Player Move behind");
+         position=position-dice;
          System.out.println("Current position of the player is:"+position);
+         if(position < 0)
+         {
+            position=0;
+            System.out.println("Position start again initial point i.e zero");
+         }
+      }
+      else
+      {
+         System.out.println("Game Finish...");
+      }
+      if(position > 100 && position >0)
+      {
+         position=position-dice;
       }
 
    }
-
+}
+public static void main(String[] args)
+{
+   System.out.println("Starting with 0 position");
+   LadderAndSnake s=new LadderAndSnake();
+   s.play();
 }
 
+}
